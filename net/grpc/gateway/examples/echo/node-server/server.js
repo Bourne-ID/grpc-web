@@ -26,13 +26,14 @@ var protoLoader = require('@grpc/proto-loader');
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
     {keepCase: true,
-     longs: String,
-     enums: String,
-     defaults: true,
-     oneofs: true
+      longs: String,
+      enums: String,
+      defaults: true,
+      oneofs: true
     });
 var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 var echo = protoDescriptor.grpc.gateway.testing;
+var myip = process.env.MY_IP
 
 /**
  * @param {!Object} call
@@ -53,7 +54,7 @@ function copyMetadata(call) {
  */
 function doEcho(call, callback) {
   callback(null, {
-    message: call.request.message
+    message: myip + ": " + call.request.message
   }, copyMetadata(call));
 }
 
@@ -105,12 +106,16 @@ function getServer() {
 }
 
 if (require.main === module) {
+  if (process.env.MY_IP == null) {
+    myip = "A Pod"
+  }
+
   var echoServer = getServer();
   echoServer.bindAsync(
-    '0.0.0.0:9090', grpc.ServerCredentials.createInsecure(), (err, port) => {
-      assert.ifError(err);
-      echoServer.start();
-  });
+      '0.0.0.0:9090', grpc.ServerCredentials.createInsecure(), (err, port) => {
+        assert.ifError(err);
+        echoServer.start();
+      });
 }
 
 exports.getServer = getServer;

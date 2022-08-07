@@ -23,6 +23,8 @@ services:
     image: grpcweb/node-server
     ports:
       - "9090:9090"
+    environment:
+      MY_IP: "123.456.789.0"
   node-interop-server:
     build:
       context: ./
