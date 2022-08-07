@@ -28,11 +28,11 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           file: "net/grpc/gateway/docker/node_server/Dockerfile"
-          push: false
-          tags: bourneid/grpc-web-demo:node_server
-      - name: Build server
+          push: true
+          tags: bourneid/grpc-web-demo:server
+      - name: Build client
         uses: docker/build-push-action@v3
         with:
-          file: "net/grpc/gateway/docker/commonjs-client/Dockerfile"
-          push: false
-          tags: bourneid/grpc-web-demo:commonjs-client
+          file: "net/grpc/gateway/docker/commonjs_client/Dockerfile"
+          push: true
+          tags: bourneid/grpc-web-demo:client
