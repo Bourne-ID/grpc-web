@@ -21,18 +21,18 @@ jobs:
       - name: Build prereqs
         uses: docker/build-push-action@v3
         with:
-          context: "{{defaultContext}}:net/grpc/gateway/docker/prereqs"
+          file: "{{defaultContext}}:net/grpc/gateway/docker/prereqs/Dockerfile"
           push: false
           tags: bourneid/grpc-web-demo:prereqs
       - name: Build server
         uses: docker/build-push-action@v3
         with:
-          context: "{{defaultContext}}:net/grpc/gateway/docker/node_server"
+          file: "{{defaultContext}}:net/grpc/gateway/docker/node_server/Dockerfile"
           push: false
           tags: bourneid/grpc-web-demo:node_server
       - name: Build server
         uses: docker/build-push-action@v3
         with:
-          context: "{{defaultContext}}:net/grpc/gateway/docker/commonjs-client"
+          file: "{{defaultContext}}:net/grpc/gateway/docker/commonjs-client/Dockerfile"
           push: false
           tags: bourneid/grpc-web-demo:commonjs-client
