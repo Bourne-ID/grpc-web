@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM bourneid/prereqs
+FROM bourneid/grpc-web-demo:prereqs
 
 WORKDIR /github/grpc-web/net/grpc/gateway/examples/echo
 
