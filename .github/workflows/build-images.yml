@@ -23,7 +23,7 @@ jobs:
         with:
           file: "net/grpc/gateway/docker/prereqs/Dockerfile"
           push: false
-          tags: bourneid/grpc-web-demo:prereqs
+          tags: bourneid/prereqs:latest
       - name: Build server
         uses: docker/build-push-action@v3
         with:
